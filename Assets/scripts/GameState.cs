@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Fungus;
 using MQ;
 using UnityEngine;
+using Random = System.Random;
 
 public class GameState : MonoBehaviour
 {
     [SerializeField] private TextAsset content;
-    [SerializeField] private Flowchart flowchart;
     [SerializeField] private SayDialog sayDialog;
-    [SerializeField] private Character character;
+    [SerializeField] private Character defaultCharacter;
 
     private CharacterModel[] characterModels;
     private Character[] characters;
@@ -16,6 +17,8 @@ public class GameState : MonoBehaviour
 
     private void Awake()
     {
+        characters = GetComponents<Character>();
+        
         var lines = content.text.Split('\n');
         characterModels = new CharacterModel[lines.Length - 1];
 
@@ -60,9 +63,22 @@ public class GameState : MonoBehaviour
         }
 
         var characterModel = characterModels[currentIndex];
-        var dialogShort = characterModel.QuandryDialog.Substring(0, 200);
+        Character character = null;
+        foreach (var c in characters)
+        {
+            if (c.NameText == characterModel.CharacterName)
+            {
+                character = c;
+                break;
+            }
+        }
+
+        if (character == null)
+        {
+            character = defaultCharacter;
+        }
 
         sayDialog.SetCharacter(character);
-        sayDialog.Say(dialogShort, true, false, false, false, false, null, SetNextCharacter);
+        sayDialog.Say(characterModel.QuandryDialog, true, false, false, false, false, null, SetNextCharacter);
     }
 }
