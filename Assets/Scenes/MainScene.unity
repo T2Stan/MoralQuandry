@@ -433,6 +433,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: {fileID: 4900000, guid: b7ec2da4b871d4e37a084636d98e0134, type: 3}
+  character: {fileID: 0}
+  sayDialog: {fileID: 0}
 --- !u!4 &1901951737
 Transform:
   m_ObjectHideFlags: 0
@@ -458,6 +460,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CardFrame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318383652620094197, guid: 32fb140d487464bfc86d5240e5f86009,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -34.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318383652620094197, guid: 32fb140d487464bfc86d5240e5f86009,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -154.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318383652620094197, guid: 32fb140d487464bfc86d5240e5f86009,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318383652620094197, guid: 32fb140d487464bfc86d5240e5f86009,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -146.7
       objectReference: {fileID: 0}
     - target: {fileID: 8742918218942681266, guid: 32fb140d487464bfc86d5240e5f86009,
         type: 3}
@@ -497,7 +519,7 @@ PrefabInstance:
     - target: {fileID: 8742918218942681266, guid: 32fb140d487464bfc86d5240e5f86009,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8742918218942681266, guid: 32fb140d487464bfc86d5240e5f86009,
         type: 3}

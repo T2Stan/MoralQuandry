@@ -58,5 +58,9 @@ public class GameState : MonoBehaviour
         {
             currentIndex = 0;
         }
+
+        var characterModel = characterModels[currentIndex];
+
+        character
     }
 }
