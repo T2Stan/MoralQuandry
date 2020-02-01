@@ -1,5 +1,14 @@
 namespace MQ
 {
+    public class Inventory
+    {
+        public int Love;
+        public int Hope;
+        public int Joy;
+        public int Parts;
+        public int Appearances;
+    }
+    
     public class ChoiceEffect
     {
         public int LoveEffect;
