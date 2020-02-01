@@ -16,7 +16,7 @@ public class GameState : MonoBehaviour
 
     private void Awake()
     {
-        characters = GetComponents<Character>();
+        characters = GetComponentsInChildren<Character>();
         
         var lines = content.text.Split('\n');
         characterModels = new CharacterModel[lines.Length - 1];
@@ -78,6 +78,7 @@ public class GameState : MonoBehaviour
         }
 
         sayDialog.SetCharacter(character);
+        sayDialog.SetCharacterImage(character.ProfileSprite);
         sayDialog.Say(characterModel.QuandryDialog, true, false, false, false, false, null, DisplayChoices);
     }
 
