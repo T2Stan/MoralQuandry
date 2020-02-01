@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Fungus;
+using JetBrains.Annotations;
 using MQ;
 using UnityEngine;
 
@@ -8,7 +9,8 @@ public class GameState : MonoBehaviour
     [SerializeField] private TextAsset content;
     [SerializeField] private SayDialog sayDialog;
     [SerializeField] private Character defaultCharacter;
-
+    [SerializeField] private MenuDialog menuDialog;
+    
     private CharacterModel[] characterModels;
     private Character[] characters;
     private int currentIndex = 0;
@@ -40,6 +42,7 @@ public class GameState : MonoBehaviour
             characterModel.RecycleEffect = ParseChoiceEffect(data, ref index);
         }
 
+        ShowNextQuandry();
         ShowNextQuandry();
     }
 
@@ -83,6 +86,26 @@ public class GameState : MonoBehaviour
     }
 
     private void DisplayChoices()
+    {
+        menuDialog.SetActive(true);
+    }
+    
+    public void OnClickedGive()
+    {
+        ShowNextQuandry();
+    }
+
+    public void OnClickedPropose()
+    {
+        ShowNextQuandry();
+    }
+
+    public void OnClickedIgnore()
+    {
+        ShowNextQuandry();
+    }
+
+    public void OnClickedRecycle()
     {
         ShowNextQuandry();
     }
