@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Fungus;
 using MQ;
 using UnityEngine;
-using Random = System.Random;
 
 public class GameState : MonoBehaviour
 {
@@ -14,6 +12,7 @@ public class GameState : MonoBehaviour
     private CharacterModel[] characterModels;
     private Character[] characters;
     private int currentIndex = 0;
+    private Inventory playerInventory;
 
     private void Awake()
     {
@@ -41,7 +40,7 @@ public class GameState : MonoBehaviour
             characterModel.RecycleEffect = ParseChoiceEffect(data, ref index);
         }
 
-        SetNextCharacter();
+        ShowNextQuandry();
     }
 
     private static ChoiceEffect ParseChoiceEffect(IReadOnlyList<string> data, ref int i)
@@ -55,14 +54,14 @@ public class GameState : MonoBehaviour
         return choiceEffect;
     }
 
-    private void SetNextCharacter()
+    private void ShowNextQuandry()
     {
         if (currentIndex >= characterModels.Length)
         {
             currentIndex = 0;
         }
 
-        var characterModel = characterModels[currentIndex];
+        var characterModel = characterModels[currentIndex++];
         Character character = null;
         foreach (var c in characters)
         {
@@ -79,6 +78,11 @@ public class GameState : MonoBehaviour
         }
 
         sayDialog.SetCharacter(character);
-        sayDialog.Say(characterModel.QuandryDialog, true, false, false, false, false, null, SetNextCharacter);
+        sayDialog.Say(characterModel.QuandryDialog, true, false, false, false, false, null, DisplayChoices);
+    }
+
+    private void DisplayChoices()
+    {
+        ShowNextQuandry();
     }
 }
