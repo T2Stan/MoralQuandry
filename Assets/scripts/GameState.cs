@@ -78,7 +78,7 @@ public class GameState : MonoBehaviour
         }
 
         sayDialog.SetCharacter(character);
-        sayDialog.SetCharacterImage(character.ProfileSprite);
+        sayDialog.SetCharacterImage(character.Portraits[0]);
         sayDialog.Say(characterModel.QuandryDialog, true, false, false, false, false, null, DisplayChoices);
     }
 
