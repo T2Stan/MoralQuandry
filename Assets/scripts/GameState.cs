@@ -6,14 +6,17 @@ using UnityEngine;
 public class GameState : MonoBehaviour
 {
     [SerializeField] private TextAsset content;
-    [SerializeField] private Character character;
+    [SerializeField] private Flowchart flowchart;
     [SerializeField] private SayDialog sayDialog;
     
     private CharacterModel[] characterModels;
+    private Character[] characters;
     private int currentIndex = 0;
 
     private void Awake()
     {
+        characters = GetComponents<Character>();
+        
         var lines = content.text.Split('\n');
         characterModels = new CharacterModel[lines.Length - 1];
 
@@ -58,9 +61,5 @@ public class GameState : MonoBehaviour
         {
             currentIndex = 0;
         }
-
-        var characterModel = characterModels[currentIndex];
-        
-        
     }
 }
