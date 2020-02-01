@@ -8,22 +8,21 @@ public class GameState : MonoBehaviour
     [SerializeField] private TextAsset content;
     [SerializeField] private Flowchart flowchart;
     [SerializeField] private SayDialog sayDialog;
-    
+    [SerializeField] private Character character;
+
     private CharacterModel[] characterModels;
     private Character[] characters;
     private int currentIndex = 0;
 
     private void Awake()
     {
-        characters = GetComponents<Character>();
-        
         var lines = content.text.Split('\n');
         characterModels = new CharacterModel[lines.Length - 1];
 
         for (var i = 1; i < lines.Length; ++i)
         {
             var data = lines[i].Split('\t');
-            var characterModel = characterModels[i-1] = new CharacterModel();
+            var characterModel = characterModels[i - 1] = new CharacterModel();
             characterModel.TriggerCondition = data[0];
             characterModel.CharacterId = data[1];
             characterModel.CharacterName = data[2];
@@ -38,8 +37,6 @@ public class GameState : MonoBehaviour
             characterModel.IgnoreEffect = ParseChoiceEffect(data, ref index);
             characterModel.RecycleEffect = ParseChoiceEffect(data, ref index);
         }
-
-        Debug.Log(JsonUtility.ToJson(characterModels));
 
         SetNextCharacter();
     }
@@ -61,5 +58,12 @@ public class GameState : MonoBehaviour
         {
             currentIndex = 0;
         }
+
+        var characterModel = characterModels[currentIndex];
+
+        var dialogShort = characterModel.QuandryDialog.Substring(0, 200);
+
+        sayDialog.SetCharacter(character);
+        sayDialog.Say(dialogShort, true, false, false, false, false, null, SetNextCharacter);
     }
 }

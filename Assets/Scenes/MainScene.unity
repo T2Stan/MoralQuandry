@@ -771,6 +771,7 @@ GameObject:
   - component: {fileID: 1321819513}
   - component: {fileID: 1321819518}
   - component: {fileID: 1321819517}
+  - component: {fileID: 1321819519}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -806,8 +807,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 353
-    y: 42
+    x: 354
+    y: 44
     width: 120
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -818,6 +819,7 @@ MonoBehaviour:
   eventHandler: {fileID: 1321819513}
   commandList:
   - {fileID: 1321819518}
+  - {fileID: 1321819519}
 --- !u!114 &1321819515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -831,11 +833,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 86.806076, y: 85.515465}
+  scrollPos: {x: -28.229595, y: 92.5421}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 0.75685126
+  zoom: 1
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -843,8 +845,7 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks: []
-  selectedCommands:
-  - {fileID: 1321819518}
+  selectedCommands: []
   variables:
   - {fileID: 1321819517}
   description: 
@@ -901,6 +902,33 @@ MonoBehaviour:
   itemId: 1
   indentLevel: 0
   sayDialog: {fileID: 899114853}
+--- !u!114 &1321819519
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321819512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 2
+  indentLevel: 0
+  storyText: Hello World
+  description: 
+  character: {fileID: 669980455}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1 &1583725848
 GameObject:
   m_ObjectHideFlags: 0
@@ -1004,9 +1032,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: {fileID: 4900000, guid: b7ec2da4b871d4e37a084636d98e0134, type: 3}
+  stage: {fileID: 487847354}
   flowchart: {fileID: 1321819515}
-  character: {fileID: 669980455}
   sayDialog: {fileID: 899114853}
+  character: {fileID: 669980455}
 --- !u!4 &1901951737
 Transform:
   m_ObjectHideFlags: 0
