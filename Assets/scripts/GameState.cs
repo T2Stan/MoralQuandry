@@ -60,7 +60,6 @@ public class GameState : MonoBehaviour
         }
 
         var characterModel = characterModels[currentIndex];
-
         var dialogShort = characterModel.QuandryDialog.Substring(0, 200);
 
         sayDialog.SetCharacter(character);
