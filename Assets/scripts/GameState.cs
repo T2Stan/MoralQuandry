@@ -1,12 +1,16 @@
 ﻿using System.Collections.Generic;
+using Fungus;
 using MQ;
 using UnityEngine;
 
 public class GameState : MonoBehaviour
 {
     [SerializeField] private TextAsset content;
-
+    [SerializeField] private Character character;
+    [SerializeField] private SayDialog sayDialog;
+    
     private CharacterModel[] characterModels;
+    private int currentIndex = 0;
 
     private void Awake()
     {
@@ -33,6 +37,8 @@ public class GameState : MonoBehaviour
         }
 
         Debug.Log(JsonUtility.ToJson(characterModels));
+
+        SetNextCharacter();
     }
 
     private static ChoiceEffect ParseChoiceEffect(IReadOnlyList<string> data, ref int i)
@@ -44,5 +50,13 @@ public class GameState : MonoBehaviour
         int.TryParse(data[i++], out choiceEffect.PartsEffect);
         int.TryParse(data[i++], out choiceEffect.AppearancesEffect);
         return choiceEffect;
+    }
+
+    private void SetNextCharacter()
+    {
+        if (currentIndex >= characterModels.Length)
+        {
+            currentIndex = 0;
+        }
     }
 }
