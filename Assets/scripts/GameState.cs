@@ -60,7 +60,7 @@ public class GameState : MonoBehaviour
         }
 
         var characterModel = characterModels[currentIndex];
-
-        character
+        
+        
     }
 }

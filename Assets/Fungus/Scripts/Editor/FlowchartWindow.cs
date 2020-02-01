@@ -449,7 +449,10 @@ namespace Fungus.EditorUtils
                 //reset all
                 foreach (var item in filteredBlocks)
                 {
-                    item.IsFiltered = false;
+                    if (item != null)
+                    {
+                        item.IsFiltered = false;
+                    }
                 }
                 
                 //gather new
