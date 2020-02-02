@@ -19,6 +19,8 @@ public class GameState : MonoBehaviour
 
     [Header("Labels")] [SerializeField] private Character defaultCharacter;
     [SerializeField] private Text textLabel;
+    [SerializeField] private Text characterDescription;
+    [SerializeField] private Text characterDesire;
     [SerializeField] private Text scoreLabel;
     [SerializeField] private Text loveLabel;
     [SerializeField] private Text hopeLabel;
@@ -202,6 +204,8 @@ public class GameState : MonoBehaviour
             character = defaultCharacter;
         }
 
+        characterDescription.text = CurrentCharacterModel.CharacterDescription;
+        characterDesire.text = CurrentCharacterModel.Desire;
         sayDialog.SetCharacter(character);
         if (character.Portraits.Count > 0)
         {
