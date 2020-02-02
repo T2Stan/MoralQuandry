@@ -2198,7 +2198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9623e989f1af0480990a4cc5c3928663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuitSound: {fileID: 0}
+  QuitSound: {fileID: 300850751}
 --- !u!114 &289613802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3281,7 +3281,7 @@ MonoBehaviour:
   optionsTint: {fileID: 300908628}
   menuPanel: {fileID: 300881582}
   pausePanel: {fileID: 300850734}
-  OptionsSound: {fileID: 0}
+  OptionsSound: {fileID: 300850750}
 --- !u!114 &289662702
 MonoBehaviour:
   m_ObjectHideFlags: 0
