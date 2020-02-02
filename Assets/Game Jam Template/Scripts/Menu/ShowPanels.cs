@@ -13,9 +13,22 @@ public class ShowPanels : MonoBehaviour {
     private MenuObject activePanelMenuObject;
     private EventSystem eventSystem;
 
+	[Header("Audio Sources")]
+	[SerializeField] private AudioSource OptionsSound;
 
+	public void ShowOptionsPanelWithSound()
+	{
+		OptionsSound.Play();
+		StartCoroutine(Wait(OptionsSound.clip.length));
+	}
 
-    private void SetSelection(GameObject panelToSetSelected)
+	private IEnumerator Wait(float time)
+	{
+		yield return new WaitForSeconds(time);
+		ShowOptionsPanel();
+	}
+
+	private void SetSelection(GameObject panelToSetSelected)
     {
 
         activePanel = panelToSetSelected;
