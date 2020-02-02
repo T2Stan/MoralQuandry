@@ -205,6 +205,9 @@ public class GameState : MonoBehaviour
             sayDialog.SetCharacterImage(character.Portraits[0]);
         }
 
+        AudioSource audio = character.GetComponent<AudioSource>();
+        audio.Play();
+
         return character;
     }
 
@@ -224,6 +227,6 @@ public class GameState : MonoBehaviour
     private void DisplayDialog(string dialog, Action onComplete, bool italic = false)
     {
         textLabel.fontStyle = italic ? FontStyle.Italic : FontStyle.Normal;
-        sayDialog.Say(dialog, true, true, false, false, false, null, onComplete);
+        sayDialog.Say(dialog, true, true, false, true, true, null, onComplete);
     }
 }
