@@ -28,6 +28,12 @@ public class ShowPanels : MonoBehaviour {
 		ShowOptionsPanel();
 	}
 
+	private IEnumerator WaitToReturn(float time)
+	{
+		yield return new WaitForSeconds(time);
+		HideOptionsPanel();
+	}
+
 	private void SetSelection(GameObject panelToSetSelected)
     {
 
@@ -53,6 +59,12 @@ public class ShowPanels : MonoBehaviour {
         SetSelection(optionsPanel);
 
     }
+
+	public void HideOptionsPanelWithSound()
+	{
+		OptionsSound.Play();
+		StartCoroutine(WaitToReturn(OptionsSound.clip.length));
+	}
 
 	//Call this function to deactivate and hide the Options panel during the main menu
 	public void HideOptionsPanel()
