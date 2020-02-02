@@ -3,7 +3,6 @@ using Fungus;
 using MQ;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameState : MonoBehaviour
 {
@@ -18,7 +17,7 @@ public class GameState : MonoBehaviour
     [SerializeField] private TextMeshProUGUI JoyLabel;
     [SerializeField] private TextMeshProUGUI PartsLabel;
     [SerializeField] private TextMeshProUGUI AppearancesLabel;
-    
+
     private CharacterModel[] characterModels;
     private Character[] characters;
     private int currentIndex = 0;
@@ -29,7 +28,7 @@ public class GameState : MonoBehaviour
     private void Awake()
     {
         characters = GetComponentsInChildren<Character>();
-        
+
         var lines = content.text.Split('\n');
         characterModels = new CharacterModel[lines.Length - 1];
 
@@ -86,24 +85,7 @@ public class GameState : MonoBehaviour
             currentIndex = 0;
         }
 
-        Character character = null;
-        foreach (var c in characters)
-        {
-            if (c.NameText == CurrentCharacterModel.CharacterName)
-            {
-                character = c;
-                break;
-            }
-        }
-
-        if (character == null)
-        {
-            character = defaultCharacter;
-        }
-
-        sayDialog.SetCharacter(character);
-        sayDialog.SetCharacterImage(character.Portraits[0]);
-        Debug.Log(CurrentCharacterModel.QuandryDialog);
+        DisplayCharacter(CurrentCharacterModel.CharacterName);
         sayDialog.Say(CurrentCharacterModel.QuandryDialog, true, false, false, false, false, null, DisplayChoices);
     }
 
@@ -111,7 +93,7 @@ public class GameState : MonoBehaviour
     {
         menuDialog.SetActive(true);
     }
-    
+
     public void OnClickedGive()
     {
         MakeChoiceWithEffect(CurrentCharacterModel.GiveEffect);
@@ -137,7 +119,31 @@ public class GameState : MonoBehaviour
         playerInventory.AddChoiceEffect(choiceEffect);
         menuDialog.SetActive(false);
         UpdateInventoryDisplay();
-        ShowNextQuandry();
+
+        if (playerInventory.Love <= 0)
+        {
+            GameOverWithEnding("Love");
+        }
+        else if (playerInventory.Hope <= 0)
+        {
+            GameOverWithEnding("Hope");
+        }
+        else if (playerInventory.Joy <= 0)
+        {
+            GameOverWithEnding("Joy");
+        }
+        else if (playerInventory.Parts <= 0)
+        {
+            GameOverWithEnding("Parts");
+        }
+        else if (playerInventory.Appearances <= 0)
+        {
+            GameOverWithEnding("Appearances");
+        }
+        else
+        {
+            ShowNextQuandry();
+        }
     }
 
     private void UpdateInventoryDisplay()
@@ -147,5 +153,31 @@ public class GameState : MonoBehaviour
         JoyLabel.text = playerInventory.Joy.ToString();
         PartsLabel.text = playerInventory.Parts.ToString();
         AppearancesLabel.text = playerInventory.Appearances.ToString();
+    }
+
+    private void GameOverWithEnding(string ending)
+    {
+        DisplayCharacter($"End_{ending}");
+    }
+
+    private void DisplayCharacter(string characterName)
+    {
+        Character character = null;
+        foreach (var c in characters)
+        {
+            if (c.NameText == characterName)
+            {
+                character = c;
+                break;
+            }
+        }
+
+        if (character == null)
+        {
+            character = defaultCharacter;
+        }
+
+        sayDialog.SetCharacter(character);
+        sayDialog.SetCharacterImage(character.Portraits[0]);
     }
 }
