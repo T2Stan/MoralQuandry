@@ -22,6 +22,5 @@ public class GetName : MonoBehaviour
         Debug.Log("Player name is: " + PlayerName);
         NameSeed = PlayerName.Length;
         Debug.Log("Seed based on name is: " + NameSeed);
-        GameState.PlayerName = PlayerName;
     }
 }

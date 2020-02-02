@@ -5,11 +5,10 @@ using MQ;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = System.Random;
 
 public class GameState : MonoBehaviour
 {
-    public static string PlayerName = "Quandary";
-
     [SerializeField] private TextAsset content;
 
     [Header("Game")] [SerializeField] private GameObject menuDialog;
@@ -31,6 +30,7 @@ public class GameState : MonoBehaviour
     private Character[] characters;
     private int currentIndex = -1;
     private Inventory playerInventory;
+    private Random rnd;
 
     private CharacterModel CurrentCharacterModel => characterModels[currentIndex];
 
@@ -52,7 +52,7 @@ public class GameState : MonoBehaviour
             characterModel.Desire = data[4];
             characterModel.ToyType = data[5];
 
-            var quandaryDialog = data[6].Replace("{$PlayerName}", PlayerName);
+            var quandaryDialog = data[6].Replace("{$PlayerName}", string.IsNullOrWhiteSpace(GetName.PlayerName) ? "Quandary" : GetName.PlayerName);
             string[] separator = {"  "};
             characterModel.QuandaryDialogQueue = quandaryDialog.Split(separator, StringSplitOptions.RemoveEmptyEntries);
 
@@ -63,6 +63,8 @@ public class GameState : MonoBehaviour
             characterModel.RecycleEffect = ParseChoiceEffect(data, ref index);
         }
 
+        rnd = new Random(GetName.NameSeed);
+        rnd.Shuffle(characterModels);
         menuDialog.SetActive(false);
         gameOverDialog.SetActive(false);
     }
