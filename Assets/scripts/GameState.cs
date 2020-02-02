@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class GameState : MonoBehaviour
 {
+    public static string PlayerName;
+    
     [SerializeField] private GameObject menuDialog;
     [SerializeField] private GameObject gameOverDialog;
 
@@ -22,6 +24,8 @@ public class GameState : MonoBehaviour
     [SerializeField] private TextMeshProUGUI JoyLabel;
     [SerializeField] private TextMeshProUGUI PartsLabel;
     [SerializeField] private TextMeshProUGUI AppearancesLabel;
+
+    private DialogInput dialogInput;
 
     private CharacterModel[] characterModels;
     private Character[] characters;
@@ -47,7 +51,9 @@ public class GameState : MonoBehaviour
             characterModel.CharacterDescription = data[3];
             characterModel.Desire = data[4];
             characterModel.ToyType = data[5];
-            characterModel.QuandryDialog = data[6];
+            
+            string[] separator = {"  "};
+            characterModel.QuandaryDialogQueue = data[6].Split(separator, StringSplitOptions.RemoveEmptyEntries);
 
             int index = 7;
             characterModel.GiveEffect = ParseChoiceEffect(data, ref index);
@@ -55,7 +61,7 @@ public class GameState : MonoBehaviour
             characterModel.IgnoreEffect = ParseChoiceEffect(data, ref index);
             characterModel.RecycleEffect = ParseChoiceEffect(data, ref index);
         }
-
+        
         menuDialog.SetActive(false);
         gameOverDialog.SetActive(false);
     }
@@ -92,7 +98,7 @@ public class GameState : MonoBehaviour
         }
 
         DisplayCharacter(CurrentCharacterModel.CharacterName);
-        DisplayDialog(CurrentCharacterModel.QuandryDialog, DisplayChoices);
+        QueueDialog(CurrentCharacterModel.QuandaryDialogQueue, DisplayChoices);
     }
 
     private void DisplayChoices()
@@ -196,8 +202,24 @@ public class GameState : MonoBehaviour
         return character;
     }
 
-    private void DisplayDialog(string dialog, Action onComplete)
+    private void QueueDialog(string[] dialogQueue, Action onComplete, int index = 0)
     {
+        if (dialogQueue.Length == index)
+        {
+            onComplete?.Invoke();
+        }
+        else
+        {
+            DisplayDialog(dialogQueue[index], () =>
+            {
+                QueueDialog(dialogQueue, onComplete, index + 1);
+            }, index == dialogQueue.Length-1);
+        }
+    }
+
+    private void DisplayDialog(string dialog, Action onComplete, bool italic = false)
+    {
+        textLabel.fontStyle = italic ? FontStyle.Italic : FontStyle.Normal;
         sayDialog.Say(dialog, true, false, false, false, false, null, onComplete);
     }
 }

@@ -47,7 +47,7 @@ namespace MQ
         public string CharacterDescription;
         public string Desire;
         public string ToyType;
-        public string QuandryDialog;
+        public string[] QuandaryDialogQueue;
         public ChoiceEffect GiveEffect;
         public ChoiceEffect ProposeEffect;
         public ChoiceEffect IgnoreEffect;
