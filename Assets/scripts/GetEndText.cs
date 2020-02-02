@@ -15,7 +15,7 @@ public class GetEndText : MonoBehaviour
     {
         Endtext = gameObject.GetComponent<Text>();
         EndNum = 3;
-/*
+
         if (GameState.playerInventory.Love <= 0)
         {
             EndNum = 1;
@@ -37,7 +37,7 @@ public class GetEndText : MonoBehaviour
         {
             EndNum = 5;
         }
-*/
+
 
         if (EndNum == 1)
         {
