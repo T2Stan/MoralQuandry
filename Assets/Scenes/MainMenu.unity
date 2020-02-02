@@ -1994,7 +1994,7 @@ MonoBehaviour:
   inMainMenu: 1
   fadeAlphaAnimationClip: {fileID: 7400000, guid: 60ffe2e0cce24e54eb5aa46966d599a8,
     type: 2}
-  StartSound: {fileID: 0}
+  StartSound: {fileID: 300850749}
 --- !u!114 &289594924
 MonoBehaviour:
   m_ObjectHideFlags: 0
