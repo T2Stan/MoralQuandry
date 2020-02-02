@@ -15,11 +15,6 @@ public class GetName : MonoBehaviour
         {
           var input = gameObject.GetComponent<InputField>();
         
-         /*   var se = new InputField.SubmitEvent();
-            se.AddListener(SubmitName);
-            input.onEndEdit = se;
-        */
-        
           input.onEndEdit.AddListener(SubmitName);  // This also works
         
 
