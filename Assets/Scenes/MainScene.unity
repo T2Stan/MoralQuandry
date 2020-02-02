@@ -925,11 +925,11 @@ MonoBehaviour:
   menuDialog: {fileID: 453735736}
   startingInventory:
     Score: 0
-    Love: 1
-    Hope: 1
-    Joy: 1
-    Parts: 1
-    Appearances: 1
+    Love: 5
+    Hope: 5
+    Joy: 5
+    Parts: 5
+    Appearances: 5
   sayDialog: {fileID: 1341641424}
   defaultCharacter: {fileID: 1727641175}
   textLabel: {fileID: 551725037}
