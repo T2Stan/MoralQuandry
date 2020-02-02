@@ -1,5 +1,8 @@
+using System;
+
 namespace MQ
 {
+    [Serializable]
     public class Inventory
     {
         public int Love;
@@ -7,6 +10,24 @@ namespace MQ
         public int Joy;
         public int Parts;
         public int Appearances;
+
+        public Inventory(Inventory inventory)
+        {
+            Love = inventory.Love;
+            Hope = inventory.Hope;
+            Joy = inventory.Joy;
+            Parts = inventory.Parts;
+            Appearances = inventory.Appearances;
+        }
+
+        public void AddChoiceEffect(ChoiceEffect effect)
+        {
+            Love += effect.LoveEffect;
+            Hope += effect.HopeEffect;
+            Joy += effect.JoyEffect;
+            Parts += effect.PartsEffect;
+            Appearances += effect.AppearancesEffect;
+        }
     }
     
     public class ChoiceEffect
