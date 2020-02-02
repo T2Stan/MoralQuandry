@@ -83,7 +83,7 @@ public class GameState : MonoBehaviour
 
         sayDialog.SetCharacter(character);
         sayDialog.SetCharacterImage(character.Portraits[0]);
-        sayDialog.Say(characterModel.QuandryDialog, true, false, false, false, false, null, DisplayChoices);
+        sayDialog.Say(characterModel.QuandryDialog, true, true, false, false, false, null, DisplayChoices);
     }
 
     private void DisplayChoices()
@@ -99,16 +99,19 @@ public class GameState : MonoBehaviour
 
     public void OnClickedPropose()
     {
+        menuDialog.SetActive(false);
         ShowNextQuandry();
     }
 
     public void OnClickedIgnore()
     {
+        menuDialog.SetActive(false);
         ShowNextQuandry();
     }
 
     public void OnClickedRecycle()
     {
+        menuDialog.SetActive(false);
         ShowNextQuandry();
     }
 }
