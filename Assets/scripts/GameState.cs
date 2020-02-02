@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Fungus;
 using MQ;
@@ -25,6 +26,14 @@ public class GameState : MonoBehaviour
     [SerializeField] private Text JoyLabel;
     [SerializeField] private Text PartsLabel;
     [SerializeField] private Text AppearancesLabel;
+
+
+    [Header("Audio Sources")]
+    [SerializeField] private AudioSource GiveSound;
+    [SerializeField] private AudioSource IgnoreSound;
+    [SerializeField] private AudioSource ProposeSound;
+    [SerializeField] private AudioSource RecycleSound;
+
 
     private CharacterModel[] characterModels;
     private Character[] characters;
@@ -113,28 +122,41 @@ public class GameState : MonoBehaviour
 
     public void OnClickedGive()
     {
+        menuDialog.SetActive(false);
+        GiveSound.Play();
+        StartCoroutine(Wait(GiveSound.clip.length, CurrentCharacterModel.GiveEffect));
+    }
+
+    private IEnumerator Wait(float time, ChoiceEffect effect)
+    {
+        yield return new WaitForSeconds(time);
         MakeChoiceWithEffect(CurrentCharacterModel.GiveEffect);
     }
 
     public void OnClickedPropose()
     {
-        MakeChoiceWithEffect(CurrentCharacterModel.ProposeEffect);
+        menuDialog.SetActive(false);
+        ProposeSound.Play();
+        StartCoroutine(Wait(ProposeSound.clip.length, CurrentCharacterModel.ProposeEffect));
     }
 
     public void OnClickedIgnore()
     {
-        MakeChoiceWithEffect(CurrentCharacterModel.IgnoreEffect);
+        menuDialog.SetActive(false);
+        IgnoreSound.Play();
+        StartCoroutine(Wait(IgnoreSound.clip.length, CurrentCharacterModel.IgnoreEffect));
     }
 
     public void OnClickedRecycle()
     {
-        MakeChoiceWithEffect(CurrentCharacterModel.RecycleEffect);
+        menuDialog.SetActive(false);
+        RecycleSound.Play();
+        StartCoroutine(Wait(RecycleSound.clip.length, CurrentCharacterModel.RecycleEffect));
     }
 
     private void MakeChoiceWithEffect(ChoiceEffect choiceEffect)
     {
         playerInventory.AddChoiceEffect(choiceEffect);
-        menuDialog.SetActive(false);
         UpdateInventoryDisplay();
 
         if (playerInventory.Love <= 0)
