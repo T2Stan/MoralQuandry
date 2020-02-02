@@ -24,8 +24,10 @@ public class StartOptions : MonoBehaviour {
 	private ShowPanels showPanels;										//Reference to ShowPanels script on UI GameObject, to show and hide panels
     private CanvasGroup menuCanvasGroup;
 
+	[Header("Audio Sources")]
+	[SerializeField] private AudioSource StartSound;
 
-    void Awake()
+	void Awake()
 	{
 		//Get a reference to ShowPanels attached to UI object
 		showPanels = GetComponent<ShowPanels> ();
@@ -39,6 +41,17 @@ public class StartOptions : MonoBehaviour {
         fadeImage.color = menuSettingsData.sceneChangeFadeColor;
 	}
 
+	public void StartButtonClickedWithSound()
+	{
+		StartSound.Play();
+		StartCoroutine(Wait(StartSound.clip.length));
+	}
+
+	private IEnumerator Wait(float time)
+	{
+		yield return new WaitForSeconds(time);
+		StartButtonClicked();
+	}
 
 	public void StartButtonClicked()
 	{
