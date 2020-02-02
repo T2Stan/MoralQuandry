@@ -3522,7 +3522,7 @@ GameObject:
   - component: {fileID: 1416998026}
   - component: {fileID: 1416998027}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4173,17 +4173,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 464a49b926d35453d95ceb8b82972fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  content: {fileID: 4900000, guid: b7ec2da4b871d4e37a084636d98e0134, type: 3}
   menuDialog: {fileID: 453735736}
   gameOverDialog: {fileID: 2073671478}
-  content: {fileID: 4900000, guid: b7ec2da4b871d4e37a084636d98e0134, type: 3}
-  sayDialog: {fileID: 1341641424}
-  defaultCharacter: {fileID: 1727641175}
   startingInventory:
     Love: 5
     Hope: 5
     Joy: 5
     Parts: 5
     Appearances: 5
+  sayDialog: {fileID: 1341641424}
+  defaultCharacter: {fileID: 1727641175}
   textLabel: {fileID: 551725037}
   LoveLabel: {fileID: 6826620451418155993}
   HopeLabel: {fileID: 6826620452356167419}

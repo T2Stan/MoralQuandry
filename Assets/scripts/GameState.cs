@@ -8,24 +8,24 @@ using UnityEngine.UI;
 
 public class GameState : MonoBehaviour
 {
-    public static string PlayerName;
-    
-    [SerializeField] private GameObject menuDialog;
-    [SerializeField] private GameObject gameOverDialog;
+    public static string PlayerName = "Quandary";
 
     [SerializeField] private TextAsset content;
-    [SerializeField] private SayDialog sayDialog;
-    [SerializeField] private Character defaultCharacter;
-    [SerializeField] private Inventory startingInventory;
-    [SerializeField] private Text textLabel;
 
+    [Header("Game")] [SerializeField] private GameObject menuDialog;
+    [SerializeField] private GameObject gameOverDialog;
+    [SerializeField] private Inventory startingInventory;
+
+    [Header("Fungus Hookups")] [SerializeField]
+    private SayDialog sayDialog;
+
+    [Header("Labels")] [SerializeField] private Character defaultCharacter;
+    [SerializeField] private Text textLabel;
     [SerializeField] private TextMeshProUGUI LoveLabel;
     [SerializeField] private TextMeshProUGUI HopeLabel;
     [SerializeField] private TextMeshProUGUI JoyLabel;
     [SerializeField] private TextMeshProUGUI PartsLabel;
     [SerializeField] private TextMeshProUGUI AppearancesLabel;
-
-    private DialogInput dialogInput;
 
     private CharacterModel[] characterModels;
     private Character[] characters;
@@ -38,7 +38,7 @@ public class GameState : MonoBehaviour
     {
         characters = GetComponentsInChildren<Character>();
 
-        var lines = content.text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+        var lines = content.text.Split(new[] {Environment.NewLine}, StringSplitOptions.None);
         characterModels = new CharacterModel[lines.Length - 1];
 
         for (var i = 1; i < lines.Length; ++i)
@@ -51,9 +51,10 @@ public class GameState : MonoBehaviour
             characterModel.CharacterDescription = data[3];
             characterModel.Desire = data[4];
             characterModel.ToyType = data[5];
-            
+
+            var quandaryDialog = data[6].Replace("{$PlayerName}", PlayerName);
             string[] separator = {"  "};
-            characterModel.QuandaryDialogQueue = data[6].Split(separator, StringSplitOptions.RemoveEmptyEntries);
+            characterModel.QuandaryDialogQueue = quandaryDialog.Split(separator, StringSplitOptions.RemoveEmptyEntries);
 
             int index = 7;
             characterModel.GiveEffect = ParseChoiceEffect(data, ref index);
@@ -61,7 +62,7 @@ public class GameState : MonoBehaviour
             characterModel.IgnoreEffect = ParseChoiceEffect(data, ref index);
             characterModel.RecycleEffect = ParseChoiceEffect(data, ref index);
         }
-        
+
         menuDialog.SetActive(false);
         gameOverDialog.SetActive(false);
     }
@@ -201,7 +202,6 @@ public class GameState : MonoBehaviour
         {
             sayDialog.SetCharacterImage(character.Portraits[0]);
         }
-        
 
         return character;
     }
@@ -214,10 +214,8 @@ public class GameState : MonoBehaviour
         }
         else
         {
-            DisplayDialog(dialogQueue[index], () =>
-            {
-                QueueDialog(dialogQueue, onComplete, index + 1);
-            }, index == dialogQueue.Length-1);
+            DisplayDialog(dialogQueue[index], () => { QueueDialog(dialogQueue, onComplete, index + 1); },
+                index == dialogQueue.Length - 1);
         }
     }
 
