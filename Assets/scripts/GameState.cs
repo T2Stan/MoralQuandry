@@ -42,7 +42,7 @@ public class GameState : MonoBehaviour
     private CharacterModel[] characterModels;
     private Character[] characters;
     private int currentIndex = -1;
-    private Inventory playerInventory;
+    public static Inventory playerInventory;
     private Random rnd;
 
     private CharacterModel CurrentCharacterModel => characterModels[currentIndex];
