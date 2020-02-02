@@ -2359,7 +2359,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 289594670}
-        m_MethodName: StartButtonClicked
+        m_MethodName: StartButtonClickedWithSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
