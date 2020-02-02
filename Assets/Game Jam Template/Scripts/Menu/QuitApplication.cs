@@ -3,6 +3,21 @@ using System.Collections;
 
 public class QuitApplication : MonoBehaviour {
 
+	[Header("Audio Sources")]
+	[SerializeField] private AudioSource QuitSound;
+
+	public void QuitWithSound()
+	{
+		QuitSound.Play();
+		StartCoroutine(Wait(QuitSound.clip.length));
+	}
+
+	private IEnumerator Wait(float time)
+	{
+		yield return new WaitForSeconds(time);
+		Quit();
+	}
+
 	public void Quit()
 	{
 		//If we are running in a standalone build of the game

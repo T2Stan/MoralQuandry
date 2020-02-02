@@ -13,9 +13,28 @@ public class ShowPanels : MonoBehaviour {
     private MenuObject activePanelMenuObject;
     private EventSystem eventSystem;
 
+	[Header("Audio Sources")]
+	[SerializeField] private AudioSource OptionsSound;
 
+	public void ShowOptionsPanelWithSound()
+	{
+		OptionsSound.Play();
+		StartCoroutine(Wait(OptionsSound.clip.length));
+	}
 
-    private void SetSelection(GameObject panelToSetSelected)
+	private IEnumerator Wait(float time)
+	{
+		yield return new WaitForSeconds(time);
+		ShowOptionsPanel();
+	}
+
+	private IEnumerator WaitToReturn(float time)
+	{
+		yield return new WaitForSeconds(time);
+		HideOptionsPanel();
+	}
+
+	private void SetSelection(GameObject panelToSetSelected)
     {
 
         activePanel = panelToSetSelected;
@@ -40,6 +59,12 @@ public class ShowPanels : MonoBehaviour {
         SetSelection(optionsPanel);
 
     }
+
+	public void HideOptionsPanelWithSound()
+	{
+		OptionsSound.Play();
+		StartCoroutine(WaitToReturn(OptionsSound.clip.length));
+	}
 
 	//Call this function to deactivate and hide the Options panel during the main menu
 	public void HideOptionsPanel()

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Fungus;
+using LitJson;
 using MQ;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +10,8 @@ using Random = System.Random;
 
 public class GameState : MonoBehaviour
 {
-    [SerializeField] private TextAsset content;
+    [Header("Content")]
+    [SerializeField] private TextAsset contentJson;
 
     [Header("Game")] [SerializeField] private GameObject menuDialog;
     [SerializeField] private GameObject gameOverDialog;
@@ -47,35 +49,18 @@ public class GameState : MonoBehaviour
 
     private void Awake()
     {
-        characters = GetComponentsInChildren<Character>();
-
-        var lines = content.text.Split(new[] {Environment.NewLine}, StringSplitOptions.None);
-        characterModels = new CharacterModel[lines.Length - 1];
-        
         var playerName = string.IsNullOrWhiteSpace(GetName.PlayerName) ? "Quandary" : GetName.PlayerName;
-
-        for (var i = 1; i < lines.Length; ++i)
+        JsonData json = JsonMapper.ToObject(contentJson.text);
+        var characterModelList = new List<CharacterModel>();
+        foreach (JsonData characterJson in json)
         {
-            var data = lines[i].Split('\t');
-            var characterModel = characterModels[i - 1] = new CharacterModel();
-            characterModel.TriggerCondition = data[0];
-            characterModel.CharacterId = data[1];
-            characterModel.CharacterName = data[2];
-            characterModel.CharacterDescription = data[3];
-            characterModel.Desire = data[4];
-            characterModel.ToyType = data[5];
-
-            var quandaryDialog = data[6].Replace("{$PlayerName}", playerName);
-            string[] separator = {"  "};
-            characterModel.QuandaryDialogQueue = quandaryDialog.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-
-            int index = 7;
-            characterModel.GiveEffect = ParseChoiceEffect(data, ref index);
-            characterModel.ProposeEffect = ParseChoiceEffect(data, ref index);
-            characterModel.IgnoreEffect = ParseChoiceEffect(data, ref index);
-            characterModel.RecycleEffect = ParseChoiceEffect(data, ref index);
+            var characterModel = new CharacterModel();
+            characterModel.ParseJson(characterJson, playerName);
+            characterModelList.Add(characterModel);
         }
 
+        characterModels = characterModelList.ToArray();
+        characters = GetComponentsInChildren<Character>();
         rnd = new Random(GetName.NameSeed);
         rnd.Shuffle(characterModels);
         menuDialog.SetActive(false);
@@ -91,21 +76,10 @@ public class GameState : MonoBehaviour
     {
         playerInventory = new Inventory(startingInventory);
         UpdateInventoryDisplay();
-        ShowNextQuandry();
+        ShowNextQuandary();
     }
-
-    private static ChoiceEffect ParseChoiceEffect(IReadOnlyList<string> data, ref int i)
-    {
-        var choiceEffect = new ChoiceEffect();
-        int.TryParse(data[i++], out choiceEffect.LoveEffect);
-        int.TryParse(data[i++], out choiceEffect.HopeEffect);
-        int.TryParse(data[i++], out choiceEffect.JoyEffect);
-        int.TryParse(data[i++], out choiceEffect.PartsEffect);
-        int.TryParse(data[i++], out choiceEffect.AppearancesEffect);
-        return choiceEffect;
-    }
-
-    private void ShowNextQuandry()
+    
+    private void ShowNextQuandary()
     {
         currentIndex++;
         if (currentIndex >= characterModels.Length)
@@ -183,7 +157,7 @@ public class GameState : MonoBehaviour
         }
         else
         {
-            ShowNextQuandry();
+            ShowNextQuandary();
         }
     }
 
