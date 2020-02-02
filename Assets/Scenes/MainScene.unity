@@ -272,7 +272,6 @@ GameObject:
   - component: {fileID: 453735740}
   - component: {fileID: 453735739}
   - component: {fileID: 453735738}
-  - component: {fileID: 453735737}
   m_Layer: 5
   m_Name: MenuDialog
   m_TagString: Untagged
@@ -280,19 +279,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &453735737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 453735736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee8371d2b2fe14a9ca0a9465140027de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  autoSelectFirstButton: 0
 --- !u!114 &453735738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1877,7 +1863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b85556abd314f3f870c18c013fdcef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickMode: 1
+  clickMode: 2
   nextClickDelay: 0
   cancelEnabled: 1
   ignoreMenuClicks: 1
@@ -2581,7 +2567,7 @@ MonoBehaviour:
   content: {fileID: 4900000, guid: b7ec2da4b871d4e37a084636d98e0134, type: 3}
   sayDialog: {fileID: 1341641424}
   defaultCharacter: {fileID: 669980455}
-  menuDialog: {fileID: 453735737}
+  menuDialog: {fileID: 453735736}
 --- !u!4 &1901951737
 Transform:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class GameState : MonoBehaviour
     [SerializeField] private TextAsset content;
     [SerializeField] private SayDialog sayDialog;
     [SerializeField] private Character defaultCharacter;
-    [SerializeField] private MenuDialog menuDialog;
+    [SerializeField] private GameObject menuDialog;
     
     private CharacterModel[] characterModels;
     private Character[] characters;
@@ -41,8 +41,9 @@ public class GameState : MonoBehaviour
             characterModel.IgnoreEffect = ParseChoiceEffect(data, ref index);
             characterModel.RecycleEffect = ParseChoiceEffect(data, ref index);
         }
+        
+        menuDialog.SetActive(false);
 
-        ShowNextQuandry();
         ShowNextQuandry();
     }
 
@@ -92,6 +93,7 @@ public class GameState : MonoBehaviour
     
     public void OnClickedGive()
     {
+        menuDialog.SetActive(false);
         ShowNextQuandry();
     }
 
