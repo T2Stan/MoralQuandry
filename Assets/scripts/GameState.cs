@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Fungus;
 using LitJson;
 using MQ;
@@ -14,7 +15,6 @@ public class GameState : MonoBehaviour
     [SerializeField] private TextAsset contentJson;
 
     [Header("Game")] [SerializeField] private GameObject menuDialog;
-    [SerializeField] private GameObject gameOverDialog;
     [SerializeField] private Inventory startingInventory;
 
     [Header("Fungus Hookups")] [SerializeField]
@@ -64,7 +64,6 @@ public class GameState : MonoBehaviour
         rnd = new Random(GetName.NameSeed);
         rnd.Shuffle(characterModels);
         menuDialog.SetActive(false);
-        gameOverDialog.SetActive(false);
     }
 
     private void Start()
@@ -173,27 +172,19 @@ public class GameState : MonoBehaviour
 
     private void GameOverWithEnding(string ending)
     {
-        var character = DisplayCharacter($"End_{ending}");
-        gameOverDialog.SetActive(true);
-        DisplayDialog(character.GetDescription(), null);
+        var character = GetCharacterByName($"End_{ending}");
+        GameOver.GameOverText = character.GetDescription();
+        SceneLoader.LoadScene("GameOver", Texture2D.blackTexture);
     }
 
-    public void ReturnToMainMenu()
+    private Character GetCharacterByName(string characterName)
     {
-        SceneLoader.LoadScene("MainMenu", Texture2D.blackTexture);
+        return characters.FirstOrDefault(c => c.NameText == characterName);
     }
 
     private Character DisplayCharacter(string characterName)
     {
-        Character character = null;
-        foreach (var c in characters)
-        {
-            if (c.NameText == characterName)
-            {
-                character = c;
-                break;
-            }
-        }
+        Character character = GetCharacterByName(characterName);
 
         if (character == null)
         {
