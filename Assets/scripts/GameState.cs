@@ -4,6 +4,7 @@ using Fungus;
 using MQ;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameState : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GameState : MonoBehaviour
     [SerializeField] private SayDialog sayDialog;
     [SerializeField] private Character defaultCharacter;
     [SerializeField] private Inventory startingInventory;
+    [SerializeField] private Text textLabel;
 
     [SerializeField] private TextMeshProUGUI LoveLabel;
     [SerializeField] private TextMeshProUGUI HopeLabel;
