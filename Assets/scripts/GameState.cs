@@ -191,7 +191,11 @@ public class GameState : MonoBehaviour
         }
 
         sayDialog.SetCharacter(character);
-        sayDialog.SetCharacterImage(character.Portraits[0]);
+        if (character.Portraits.Count > 0)
+        {
+            sayDialog.SetCharacterImage(character.Portraits[0]);
+        }
+        
 
         return character;
     }
