@@ -1843,7 +1843,7 @@ MonoBehaviour:
   storyText: {fileID: 551725037}
   storyTextGO: {fileID: 0}
   characterImage: {fileID: 1416998026}
-  fitTextWithImage: 1
+  fitTextWithImage: 0
   closeOtherDialogs: 0
 --- !u!224 &1341641425
 RectTransform:
