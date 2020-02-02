@@ -3268,7 +3268,7 @@ PrefabInstance:
         type: 3}
       propertyPath: portraits.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: 4f8255a27a1cd8b4cbc7db2f1232571c,
+      objectReference: {fileID: 21300000, guid: fa7a3574ad22b401c8034eee1ee46d86,
         type: 3}
     - target: {fileID: 3147348339393841349, guid: 1a83b14b2f315414da58eac2523be6c3,
         type: 3}
