@@ -20,11 +20,11 @@ public class GameState : MonoBehaviour
 
     [Header("Labels")] [SerializeField] private Character defaultCharacter;
     [SerializeField] private Text textLabel;
-    [SerializeField] private TextMeshProUGUI LoveLabel;
-    [SerializeField] private TextMeshProUGUI HopeLabel;
-    [SerializeField] private TextMeshProUGUI JoyLabel;
-    [SerializeField] private TextMeshProUGUI PartsLabel;
-    [SerializeField] private TextMeshProUGUI AppearancesLabel;
+    [SerializeField] private Text LoveLabel;
+    [SerializeField] private Text HopeLabel;
+    [SerializeField] private Text JoyLabel;
+    [SerializeField] private Text PartsLabel;
+    [SerializeField] private Text AppearancesLabel;
 
     private CharacterModel[] characterModels;
     private Character[] characters;
@@ -40,6 +40,8 @@ public class GameState : MonoBehaviour
 
         var lines = content.text.Split(new[] {Environment.NewLine}, StringSplitOptions.None);
         characterModels = new CharacterModel[lines.Length - 1];
+        
+        var playerName = string.IsNullOrWhiteSpace(GetName.PlayerName) ? "Quandary" : GetName.PlayerName;
 
         for (var i = 1; i < lines.Length; ++i)
         {
@@ -52,7 +54,7 @@ public class GameState : MonoBehaviour
             characterModel.Desire = data[4];
             characterModel.ToyType = data[5];
 
-            var quandaryDialog = data[6].Replace("{$PlayerName}", string.IsNullOrWhiteSpace(GetName.PlayerName) ? "Quandary" : GetName.PlayerName);
+            var quandaryDialog = data[6].Replace("{$PlayerName}", playerName);
             string[] separator = {"  "};
             characterModel.QuandaryDialogQueue = quandaryDialog.Split(separator, StringSplitOptions.RemoveEmptyEntries);
 
