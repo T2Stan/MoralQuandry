@@ -224,6 +224,6 @@ public class GameState : MonoBehaviour
     private void DisplayDialog(string dialog, Action onComplete, bool italic = false)
     {
         textLabel.fontStyle = italic ? FontStyle.Italic : FontStyle.Normal;
-        sayDialog.Say(dialog, true, false, false, false, false, null, onComplete);
+        sayDialog.Say(dialog, true, true, false, false, false, null, onComplete);
     }
 }
