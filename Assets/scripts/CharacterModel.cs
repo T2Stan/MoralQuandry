@@ -5,6 +5,7 @@ namespace MQ
     [Serializable]
     public class Inventory
     {
+        public int Score;
         public int Love;
         public int Hope;
         public int Joy;
@@ -22,6 +23,7 @@ namespace MQ
 
         public void AddChoiceEffect(ChoiceEffect effect)
         {
+            Score++;
             Love += effect.LoveEffect;
             Hope += effect.HopeEffect;
             Joy += effect.JoyEffect;

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Fungus;
 using MQ;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
@@ -21,11 +20,14 @@ public class GameState : MonoBehaviour
 
     [Header("Labels")] [SerializeField] private Character defaultCharacter;
     [SerializeField] private Text textLabel;
-    [SerializeField] private Text LoveLabel;
-    [SerializeField] private Text HopeLabel;
-    [SerializeField] private Text JoyLabel;
-    [SerializeField] private Text PartsLabel;
-    [SerializeField] private Text AppearancesLabel;
+    [SerializeField] private Text characterDescription;
+    [SerializeField] private Text characterDesire;
+    [SerializeField] private Text scoreLabel;
+    [SerializeField] private Text loveLabel;
+    [SerializeField] private Text hopeLabel;
+    [SerializeField] private Text joyLabel;
+    [SerializeField] private Text partsLabel;
+    [SerializeField] private Text appearancesLabel;
 
 
     [Header("Audio Sources")]
@@ -187,11 +189,12 @@ public class GameState : MonoBehaviour
 
     private void UpdateInventoryDisplay()
     {
-        LoveLabel.text = playerInventory.Love.ToString();
-        HopeLabel.text = playerInventory.Hope.ToString();
-        JoyLabel.text = playerInventory.Joy.ToString();
-        PartsLabel.text = playerInventory.Parts.ToString();
-        AppearancesLabel.text = playerInventory.Appearances.ToString();
+        scoreLabel.text = playerInventory.Score.ToString();
+        loveLabel.text = playerInventory.Love.ToString();
+        hopeLabel.text = playerInventory.Hope.ToString();
+        joyLabel.text = playerInventory.Joy.ToString();
+        partsLabel.text = playerInventory.Parts.ToString();
+        appearancesLabel.text = playerInventory.Appearances.ToString();
     }
 
     private void GameOverWithEnding(string ending)
@@ -223,6 +226,8 @@ public class GameState : MonoBehaviour
             character = defaultCharacter;
         }
 
+        characterDescription.text = CurrentCharacterModel.CharacterDescription;
+        characterDesire.text = CurrentCharacterModel.Desire;
         sayDialog.SetCharacter(character);
         if (character.Portraits.Count > 0)
         {
