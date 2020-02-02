@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Fungus;
 using MQ;
 using TMPro;
@@ -6,10 +7,12 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour
 {
+    [SerializeField] private GameObject menuDialog;
+    [SerializeField] private GameObject gameOverDialog;
+
     [SerializeField] private TextAsset content;
     [SerializeField] private SayDialog sayDialog;
     [SerializeField] private Character defaultCharacter;
-    [SerializeField] private GameObject menuDialog;
     [SerializeField] private Inventory startingInventory;
 
     [SerializeField] private TextMeshProUGUI LoveLabel;
@@ -29,7 +32,7 @@ public class GameState : MonoBehaviour
     {
         characters = GetComponentsInChildren<Character>();
 
-        var lines = content.text.Split('\n');
+        var lines = content.text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
         characterModels = new CharacterModel[lines.Length - 1];
 
         for (var i = 1; i < lines.Length; ++i)
@@ -52,6 +55,7 @@ public class GameState : MonoBehaviour
         }
 
         menuDialog.SetActive(false);
+        gameOverDialog.SetActive(false);
     }
 
     private void Start()
@@ -86,7 +90,7 @@ public class GameState : MonoBehaviour
         }
 
         DisplayCharacter(CurrentCharacterModel.CharacterName);
-        sayDialog.Say(CurrentCharacterModel.QuandryDialog, true, false, false, false, false, null, DisplayChoices);
+        DisplayDialog(CurrentCharacterModel.QuandryDialog, DisplayChoices);
     }
 
     private void DisplayChoices()
@@ -157,10 +161,17 @@ public class GameState : MonoBehaviour
 
     private void GameOverWithEnding(string ending)
     {
-        DisplayCharacter($"End_{ending}");
+        var character = DisplayCharacter($"End_{ending}");
+        gameOverDialog.SetActive(true);
+        DisplayDialog(character.GetDescription(), null);
     }
 
-    private void DisplayCharacter(string characterName)
+    public void ReturnToMainMenu()
+    {
+        SceneLoader.LoadScene("MainMenu", Texture2D.blackTexture);
+    }
+
+    private Character DisplayCharacter(string characterName)
     {
         Character character = null;
         foreach (var c in characters)
@@ -179,5 +190,12 @@ public class GameState : MonoBehaviour
 
         sayDialog.SetCharacter(character);
         sayDialog.SetCharacterImage(character.Portraits[0]);
+
+        return character;
+    }
+
+    private void DisplayDialog(string dialog, Action onComplete)
+    {
+        sayDialog.Say(dialog, true, false, false, false, false, null, onComplete);
     }
 }
