@@ -3,6 +3,7 @@
   <component name="ContentModelStore">
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="content" t="Include">
@@ -913,6 +914,18 @@
               <e p="ShowPanels.cs" t="Include" />
               <e p="StartOptions.cs" t="Include" />
             </e>
+          </e>
+        </e>
+        <e p="Plugins" t="Include">
+          <e p="LitJson" t="Include">
+            <e p="IJsonWrapper.cs" t="Include" />
+            <e p="JsonData.cs" t="Include" />
+            <e p="JsonException.cs" t="Include" />
+            <e p="JsonMapper.cs" t="Include" />
+            <e p="JsonReader.cs" t="Include" />
+            <e p="JsonWriter.cs" t="Include" />
+            <e p="Lexer.cs" t="Include" />
+            <e p="ParserToken.cs" t="Include" />
           </e>
         </e>
         <e p="Scripts" t="Include">
