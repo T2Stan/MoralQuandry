@@ -29,7 +29,7 @@ public class GameState : MonoBehaviour
 
     private CharacterModel[] characterModels;
     private Character[] characters;
-    private int currentIndex = 0;
+    private int currentIndex = -1;
     private Inventory playerInventory;
 
     private CharacterModel CurrentCharacterModel => characterModels[currentIndex];
