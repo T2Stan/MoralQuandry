@@ -20,6 +20,11 @@ public class Displaytextmouseover : MonoBehaviour, IPointerEnterHandler, IPointe
       //  Debug.Log("The cursor exited the selectable UI element.");
         DefinitionText.SetActive(false);
     }
+
+    public void TurnOffFloatText()
+    {
+        DefinitionText.SetActive(false);
+    }
 }
 
 
