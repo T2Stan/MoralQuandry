@@ -223,4 +223,14 @@ public class GameState : MonoBehaviour
         textLabel.fontStyle = italic ? FontStyle.Italic : FontStyle.Normal;
         sayDialog.Say(dialog, true, true, false, true, true, null, onComplete);
     }
+    
+    public void ReturnToMainMenu()
+    {
+        var menuUi = GameObject.Find("Menu UI");
+        if (menuUi != null)
+        {
+           Destroy(menuUi);
+        }
+        SceneLoader.LoadScene("MainMenu", Texture2D.blackTexture);
+    }
 }
