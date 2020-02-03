@@ -235,6 +235,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 6975680485869232003, guid: 9b40c511d57e746d684a80c65676476d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a6d9ead0c6d3d4cb5ad608638a385a06,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b40c511d57e746d684a80c65676476d, type: 3}
 --- !u!114 &422445528 stripped
@@ -929,11 +935,11 @@ MonoBehaviour:
   menuDialog: {fileID: 453735736}
   startingInventory:
     Score: 0
-    Love: 1
-    Hope: 1
-    Joy: 1
-    Parts: 1
-    Appearances: 1
+    Love: 5
+    Hope: 5
+    Joy: 5
+    Parts: 5
+    Appearances: 5
   sayDialog: {fileID: 1341641424}
   defaultCharacter: {fileID: 1727641175}
   textLabel: {fileID: 551725037}
