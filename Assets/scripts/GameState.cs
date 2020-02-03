@@ -226,6 +226,11 @@ public class GameState : MonoBehaviour
     
     public void ReturnToMainMenu()
     {
+        var menuUi = GameObject.Find("Menu UI");
+        if (menuUi != null)
+        {
+           Destroy(menuUi);
+        }
         SceneLoader.LoadScene("MainMenu", Texture2D.blackTexture);
     }
 }
