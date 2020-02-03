@@ -188,7 +188,7 @@ PrefabInstance:
     - target: {fileID: 6975680485787066916, guid: 9b40c511d57e746d684a80c65676476d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 359.1
+      value: 237.7
       objectReference: {fileID: 0}
     - target: {fileID: 6975680485787066916, guid: 9b40c511d57e746d684a80c65676476d,
         type: 3}
@@ -198,7 +198,7 @@ PrefabInstance:
     - target: {fileID: 6975680485787066916, guid: 9b40c511d57e746d684a80c65676476d,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 682.2
+      value: 897.6
       objectReference: {fileID: 0}
     - target: {fileID: 6975680485787066916, guid: 9b40c511d57e746d684a80c65676476d,
         type: 3}
@@ -722,7 +722,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f73efb951ca1c564ab220625d6756e67, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 376a65df0e93f41598b95efc49ee32c2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -929,11 +929,11 @@ MonoBehaviour:
   menuDialog: {fileID: 453735736}
   startingInventory:
     Score: 0
-    Love: 5
-    Hope: 5
-    Joy: 5
-    Parts: 5
-    Appearances: 5
+    Love: 1
+    Hope: 1
+    Joy: 1
+    Parts: 1
+    Appearances: 1
   sayDialog: {fileID: 1341641424}
   defaultCharacter: {fileID: 1727641175}
   textLabel: {fileID: 551725037}
@@ -1686,32 +1686,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1952783508}
     m_Modifications:
-    - target: {fileID: 6086635517657167976, guid: c74c90bd5d790450f9b23b8b0ceb0ce2,
-        type: 3}
-      propertyPath: inputSound
-      value: 
-      objectReference: {fileID: 8300000, guid: bd3dd354ae0d98d40a871f6506c9380f, type: 3}
-    - target: {fileID: 6086635517657167976, guid: c74c90bd5d790450f9b23b8b0ceb0ce2,
-        type: 3}
-      propertyPath: audioMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6086635517657167976, guid: c74c90bd5d790450f9b23b8b0ceb0ce2,
-        type: 3}
-      propertyPath: soundEffect
-      value: 
-      objectReference: {fileID: 8300000, guid: bd3dd354ae0d98d40a871f6506c9380f, type: 3}
-    - target: {fileID: 6086635517657167977, guid: c74c90bd5d790450f9b23b8b0ceb0ce2,
-        type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 24301952, guid: 0ac7fb39e445048d89688f69c2a1839a,
-        type: 2}
-    - target: {fileID: 6086635517657167977, guid: c74c90bd5d790450f9b23b8b0ceb0ce2,
-        type: 3}
-      propertyPath: Priority
-      value: 73
-      objectReference: {fileID: 0}
     - target: {fileID: 6086635517657167980, guid: c74c90bd5d790450f9b23b8b0ceb0ce2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1985,11 +1959,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1901951736}
-    - target: {fileID: 7826485112671585006, guid: 0955a2d38d21e49889360c4907f0ac7a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7826485112887392704, guid: 0955a2d38d21e49889360c4907f0ac7a,
         type: 3}
       propertyPath: m_LocalPosition.x
